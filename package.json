@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
   },
   "devDependencies": {
     "eslint": "^6.6.0",
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4"
   }
 }
