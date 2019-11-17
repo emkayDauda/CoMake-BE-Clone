@@ -1,0 +1,41 @@
+{
+  "name": "comake-backend-md",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comakeu/Backend-MD.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "sqlite3",
+    "postgres",
+    "knex",
+    "backend",
+    "Lambda-School"
+  ],
+  "author": "Maaruf Dauda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/comakeu/Backend-MD/issues"
+  },
+  "homepage": "https://github.com/comakeu/Backend-MD#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^6.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "knex": "^0.20.2",
+    "sqlite3": "^4.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "jest": "^24.9.0"
+  }
+}
