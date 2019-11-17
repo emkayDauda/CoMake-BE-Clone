@@ -3,10 +3,14 @@ exports.up = function(knex) {
     .createTable("users", table => {
       table.increments("user_id");
 
+      table.text("name").notNullable();
+
       table
-        .text("name")
+        .text("username")
         .notNullable()
         .unique();
+
+      table.text("password").notNullable();
 
       table.text("phone");
     })
@@ -28,7 +32,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema
-  .dropTableIfExists("issues")
-  .dropTableIfExists("issues");
+  return knex.schema.dropTableIfExists("issues").dropTableIfExists("users");
 };
