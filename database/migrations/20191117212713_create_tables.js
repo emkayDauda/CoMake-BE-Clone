@@ -15,8 +15,8 @@ exports.up = function(knex) {
       table.increments("issue_id");
 
       table.text("description");
-      table.number("longitude");
-      table.number("latitude");
+      table.integer("longitude");
+      table.integer("latitude");
 
       table
         .integer("user_id")
