@@ -9,9 +9,9 @@ function get(id) {
 }
 
 function insert(user) {
-  db("users")
+  return db("users")
     .insert(user)
-    .then(([id]) => this.get(id));
+    // .then(([id]) => this.get(id));
 }
 
 module.exports = {
