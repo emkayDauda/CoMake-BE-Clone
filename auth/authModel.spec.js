@@ -34,7 +34,7 @@ describe("auth endpoints", () => {
         .post("/api/auth/register")
         .send(testUser)
         
-        expect(response.body.password).not.toBe(testUser.password);
+        expect(response.body.password).not.toBe(undefined && testUser.password);
     });
   });
 
