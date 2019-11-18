@@ -19,7 +19,7 @@ describe("auth endpoints", () => {
       return request(server)
         .post("/api/auth/register")
         .send(testUser)
-        .expect(200);
+        .expect(201);
     });
     test("/register returns actual user", async () => {
       const response = await request(server)
@@ -28,15 +28,15 @@ describe("auth endpoints", () => {
 
         console.log(process.env.DB_ENV);
         
-      expect(response.body.name).toBe(testUser.name);
-      expect(response.body.phone).toBe(testUser.phone);
+      expect(response.body.data.name).toBe(testUser.name);
+      expect(response.body.data.phone).toBe(testUser.phone);
     });
     test("/register does not store password in plain text", async () => {
       const response = await request(server)
         .post("/api/auth/register")
         .send(testUser);
 
-      expect(response.body.password).not.toBe(undefined && testUser.password);
+      expect(response.body.data.password).not.toBe(undefined && testUser.password);
     });
   });
 
@@ -59,7 +59,7 @@ describe("auth endpoints", () => {
         .post("/api/auth/login")
         .send(testUser);
 
-      expect(response.body.username).toBe(testUser.username);
+      expect(response.body.data.username).toBe(testUser.username);
     });
   });
 });

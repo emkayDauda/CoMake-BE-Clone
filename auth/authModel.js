@@ -3,7 +3,7 @@ const db = require("../database/dbConfig");
 function get(id) {
   let query = db("users as u");
 
-  if (id) query.where("u.users_id", id).first();
+  if (id) query.where("u.user_id", id).first();
 
   return query;
 }
@@ -11,7 +11,7 @@ function get(id) {
 function insert(user) {
   return db("users")
     .insert(user)
-    // .then(([id]) => this.get(id));
+    .then(([id]) => this.get(id));
 }
 
 module.exports = {
