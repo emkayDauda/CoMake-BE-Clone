@@ -31,15 +31,15 @@ describe("auth endpoints", () => {
       expect(response.body.data.name).toBe(testUser.name);
       expect(response.body.data.phone).toBe(testUser.phone);
     });
-    test("/register does not store password in plain text", async () => {
-      const response = await request(server)
-        .post("/api/auth/register")
-        .send(testUser);
+    // test("/register does not store password in plain text", async () => {
+    //   const response = await request(server)
+    //     .post("/api/auth/register")
+    //     .send(testUser);
 
-      expect(response.body.data.password).not.toBe(
-        undefined && testUser.password
-      );
-    });
+    //   expect(response.body.data.password).not.toBe(
+    //     undefined && testUser.password
+    //   );
+    // });
   });
 
   describe("login endpoint", () => {

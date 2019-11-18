@@ -22,6 +22,7 @@ auth.post("/login", loginVal, (req, res) => {
   db.findBy({ username }).then(user => {
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = generateToken(user);
+      delete user.password
       res
         .status(200)
         .json({
