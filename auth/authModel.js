@@ -14,7 +14,14 @@ function insert(user) {
     .then(([id]) => this.get(id));
 }
 
+function findBy(filter){
+  return db('users')
+  .where(filter)
+  .first()
+}
+
 module.exports = {
   get,
-  insert
+  insert,
+  findBy,
 };
