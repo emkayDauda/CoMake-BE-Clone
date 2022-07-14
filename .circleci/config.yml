@@ -2,6 +2,10 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+defaults: &docker
+  docker:
+      - image: circleci/node:13.8.0
+
 jobs:
   build:
     docker:
@@ -14,6 +18,15 @@ jobs:
             - /node_modules
           key: "npm-packages"
       # - run: npm run lint
+  test:
+    <<: *docker
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - "npm-packages"
+      - run: npm i
+      - run: npm run test
 
   
 
