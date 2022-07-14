@@ -3,17 +3,21 @@
 version: 2.1
 
 jobs:
-  say-hello:
+  build:
     docker:
-      - image: cimg/base:stable
-
+      - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+      - run: npm i
+      - save_cache:
+          paths:
+            - /node_modules
+          key: "npm-packages"
+      # - run: npm run lint
+
+  
 
 workflows:
-  say-hello-workflow:
+  build-workflow:
     jobs:
-      - say-hello
+      - build
