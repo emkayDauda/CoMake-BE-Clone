@@ -6,6 +6,12 @@ beforeEach(() => {
   return db("users").truncate();
 });
 
+afterAll(done => {
+
+  db.destroy()
+  done()
+})
+
 const testUser = {
   name: "ALengthyName",
   username: "emkay",
