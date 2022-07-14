@@ -27,6 +27,11 @@ jobs:
             - "npm-packages"
       - run: npm i
       - run: npm run test
+  
+  analyze:
+    <<: *docker
+    steps:
+      - run: npm audit
 
   
 
@@ -37,3 +42,6 @@ workflows:
       - test:
           requires:
             - build
+      - analyze:
+          requires:
+            - test
