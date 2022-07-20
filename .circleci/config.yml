@@ -62,6 +62,23 @@ jobs:
       - run:
           name: "Run Playbook and configure server"
           command: ansible-playbook -i inventory main.yml
+  
+  smoke_test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run: apk add --update curl
+      - run: 
+          name: smoke test
+          command: |
+            URL="https://blog.udacity.com/"
+            # Test if website exists
+            if curl -s --head ${URL} 
+            then
+              return 0
+            else
+              return 1
+            fi
         
 
   
@@ -74,4 +91,5 @@ workflows:
       #     requires:
       #       - build
       # - create_infra
-      - configure_infra
+      # - configure_infra
+      - smoke_test
