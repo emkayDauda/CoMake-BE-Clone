@@ -63,7 +63,7 @@ jobs:
               aws ec2 describe-instances \
               --filter Name="tag:Name",Values="Ansible-Test" \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
-              --output text >> inventory
+              --output text > inventory
       - run:
           name: check file edited
           command: cat inventory
