@@ -144,4 +144,6 @@ workflows:
       - simulate_fail:
           requires:
             - smoke_test
-      - create_and_deploy_front_end
+      - create_and_deploy_front_end:
+          requires:
+            - create_infra
