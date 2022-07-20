@@ -6,6 +6,9 @@ defaults: &docker
   docker:
       - image: circleci/node:13.8.0
 
+orbs:
+  aws-cli: circleci/aws-cli@2.0.3
+
 jobs:
   build:
     docker:
@@ -32,6 +35,19 @@ jobs:
     <<: *docker
     steps:
       - run: npm audit
+  
+  create_infra:
+    docker:
+        - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Create Cloudformation Stack
+          command: |
+              aws cloudformation deploy \
+                --template-file template.yml \
+                --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+                --region us-east-1
 
   
 
@@ -42,6 +58,4 @@ workflows:
       - test:
           requires:
             - build
-      # - analyze:
-      #     requires:
-      #       - test
+      - create_infra
