@@ -2,6 +2,15 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+commands:
+  destroy_env:
+    steps:
+      - run:
+          name: "Destroy stack"
+          when: on_fail
+          command: |
+            aws cloudformation delete-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}
+
 defaults: &docker
   docker:
       - image: circleci/node:13.8.0
@@ -79,6 +88,7 @@ jobs:
             else
               return 1
             fi
+      - destroy_env
         
 
   
