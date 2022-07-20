@@ -107,9 +107,9 @@ workflows:
       # - test:
       #     requires:
       #       - build
-      # - create_infra
+      - create_infra
       # - configure_infra
-      - smoke_test
-      - simulate_fail:
-          requires:
-            - smoke_test
+      # - smoke_test
+      # - simulate_fail:
+      #     requires:
+      #       - smoke_test
