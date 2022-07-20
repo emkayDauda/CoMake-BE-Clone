@@ -63,7 +63,7 @@ jobs:
               aws ec2 describe-instances \
               --filter Name="tag:Name",Values="Ansible-Test" \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
-              --output text > inventory
+              --output text >> inventory
       - run:
           name: check file edited
           command: cat inventory
@@ -118,12 +118,12 @@ workflows:
       #     requires:
       #       - build
       - create_infra
-      # - configure_infra:
-      #     requires:
-      #       - create_infra
-      # - smoke_test:
-      #     requires:
-      #       - configure_infra
-      # - simulate_fail:
-      #     requires:
-      #       - smoke_test
+      - configure_infra:
+          requires:
+            - create_infra
+      - smoke_test:
+          requires:
+            - configure_infra
+      - simulate_fail:
+          requires:
+            - smoke_test
