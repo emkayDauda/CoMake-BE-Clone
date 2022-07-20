@@ -75,7 +75,7 @@ jobs:
             # Test if website exists
             if curl -s --head ${URL} 
             then
-              return 1
+              return 0
             else
               return 1
             fi
