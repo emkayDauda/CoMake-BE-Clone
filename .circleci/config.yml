@@ -9,7 +9,7 @@ commands:
           name: "Destroy stack"
           when: on_fail
           command: |
-            aws cloudformation delete-stack --stack-name myStack-${CIRCLE_REPOSITORY_URL:0:5}
+            aws cloudformation delete-stack --stack-name myStack-${CIRCLE_PROJECT_REPONAME}
 
 defaults: &docker
   docker:
@@ -55,7 +55,7 @@ jobs:
           command: |
               aws cloudformation deploy \
                 --template-file template.yml \
-                --stack-name myStack-${CIRCLE_REPOSITORY_URL:0:5} \
+                --stack-name myStack-${CIRCLE_PROJECT_REPONAME} \
                 --region us-east-1
   
   configure_infra:
