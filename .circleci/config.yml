@@ -74,7 +74,7 @@ jobs:
   
   smoke_test:
     docker:
-      - image: amazon/aws-cli
+      - image: alpine:latest
     steps:
       - run: apk add --update curl
       - run: 
@@ -84,10 +84,17 @@ jobs:
             # Test if website exists
             if curl -s --head ${URL} 
             then
-              return 1
+              return 0
             else
               return 1
             fi
+  
+  simulate_fail:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - run: |
+          return 1
       - destroy_env
         
 
@@ -103,3 +110,6 @@ workflows:
       # - create_infra
       # - configure_infra
       - smoke_test
+      - simulate_fail:
+          requires:
+            - smoke_test
